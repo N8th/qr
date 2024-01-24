@@ -41,6 +41,7 @@ function addToTable() {
   cell3.innerHTML = serialNumber;
   cell4.innerHTML = name;
 
+  // Clear the input fields after adding
   document.getElementById("qrId").value = "";
   document.getElementById("partNumber").value = "";
   document.getElementById("serialNumber").value = "";
