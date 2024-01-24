@@ -17,10 +17,12 @@ domReady(function () {
   htmlScanner.render(onScanSuccess);
 
   document.getElementById("addButton").addEventListener("click", addToTable);
+
+  setInterval(fetchAndUpdateTable, 5000);
 });
 
 function onScanSuccess(decodedText, decodedResult) {
-  document.getElementById("qrId").value = decodedText; // Set QR ID
+  document.getElementById("qrId").value = decodedText;
 }
 
 function addToTable() {
@@ -28,25 +30,33 @@ function addToTable() {
   var partNumber = document.getElementById("partNumber").value;
   var serialNumber = document.getElementById("serialNumber").value;
   var name = document.getElementById("name").value;
+  var lastOwner = document.getElementById("lastOwner").value;
+  var location = document.getElementById("location").value;
+  var quantity = document.getElementById("quantity").value;
+  var condition = document.getElementById("condition").value;
+  var price = document.getElementById("price").value;
+  var category = document.getElementById("category").value;
+  var purchaseDate = document.getElementById("purchaseDate").value;
+  var warrantyExpiry = document.getElementById("warrantyExpiry").value;
+  var notes = document.getElementById("notes").value;
 
-  var table = document.getElementById("myTable");
-  var row = table.insertRow(-1);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-
-  cell1.innerHTML = qrId;
-  cell2.innerHTML = partNumber;
-  cell3.innerHTML = serialNumber;
-  cell4.innerHTML = name;
-
-  // Clear the input fields after adding
+  // Clear input fields after adding
   document.getElementById("qrId").value = "";
   document.getElementById("partNumber").value = "";
   document.getElementById("serialNumber").value = "";
   document.getElementById("name").value = "";
-  fetch("/addData", {
+  // Clear additional fields
+  document.getElementById("lastOwner").value = "";
+  document.getElementById("location").value = "";
+  document.getElementById("quantity").value = "";
+  document.getElementById("condition").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("category").value = "";
+  document.getElementById("purchaseDate").value = "";
+  document.getElementById("warrantyExpiry").value = "";
+  document.getElementById("notes").value = "";
+
+  fetch("http://localhost:5500/addData", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -56,27 +66,58 @@ function addToTable() {
       partNumber: partNumber,
       serialNumber: serialNumber,
       name: name,
+      lastOwner: lastOwner,
+      location: location,
+      quantity: quantity,
+      condition: condition,
+      price: price,
+      category: category,
+      purchaseDate: purchaseDate,
+      warrantyExpiry: warrantyExpiry,
+      notes: notes,
     }),
   })
-    .then((response) => response.text())
-    .then((data) => console.log(data))
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      console.log("Data added successfully");
+    })
     .catch((error) => {
       console.error("Error:", error);
     });
 }
 
-//
-// HTML5-qrcode library methods:
-//
-// Html5QrcodeScanner: Initializes the QR code scanner.
-// render(): Renders the scanner within a specified HTML element.
-// onScanSuccess(decodeText, decodeResult): A callback function triggered upon successful QR code scanning, displaying decoded text in an alert.
-// fps: Sets the frames per second for video capture.
-// qrbos: Sets the QR code detection boundary size.
-//
+function fetchAndUpdateTable() {
+  fetch("http://localhost:5500/getData")
+    .then((response) => response.json())
+    .then((data) => {
+      updateTable(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
 
-// Install CORS by running npm install cors.
-// Add the following to your server.js:
-// javascript
-// Copy code
-// This setup provides a basic outline to get you started with connecting your HTML/JavaScript frontend to a backend server and using Postman to interact with it. Depending on your requirements, you might need to add more complexity, like database integration, authentication, or more sophisticated data handling.
+function updateTable(data) {
+  const table = document.getElementById("myTable");
+  while (table.rows.length > 1) {
+    table.deleteRow(1);
+  }
+  data.forEach((item) => {
+    const row = table.insertRow();
+    row.insertCell(0).innerHTML = item.qrId;
+    row.insertCell(1).innerHTML = item.partNumber;
+    row.insertCell(2).innerHTML = item.serialNumber;
+    row.insertCell(3).innerHTML = item.name;
+    row.insertCell(4).innerHTML = item.lastOwner;
+    row.insertCell(5).innerHTML = item.location;
+    row.insertCell(6).innerHTML = item.quantity;
+    row.insertCell(7).innerHTML = item.condition;
+    row.insertCell(8).innerHTML = item.price;
+    row.insertCell(9).innerHTML = item.category;
+    row.insertCell(10).innerHTML = item.purchaseDate;
+    row.insertCell(11).innerHTML = item.warrantyExpiry;
+    row.insertCell(12).innerHTML = item.notes;
+  });
+}
