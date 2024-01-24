@@ -100,3 +100,14 @@ video {
 body {
   background-color: rgb(69, 69, 95);
 }
+
+table {
+  background-color: white;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+scanned-container {
+  width: 100%;
+  margin: 0 auto;
+}

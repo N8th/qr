@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://unpkg.com/html5-qrcode"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>Testing QR Scanner</title>
   </head>
   <body>
@@ -23,32 +23,27 @@
     </div>
     <br />
     <div class="container">
-      <h1>QR data</h1>
+      <h1>QR Data Entry</h1>
       <div class="section">
         <div id="my-qr-reader"></div>
+        <br />
+        <input type="text" id="qrId" placeholder="QR ID" readonly />
+        <input type="text" id="partNumber" placeholder="Part Number" />
+        <input type="text" id="serialNumber" placeholder="Serial Number" />
+        <input type="text" id="name" placeholder="Name" />
+        <button id="addButton">Add to Table</button>
       </div>
-      <div class="scanned-container" id="scannedTable">
-        <h2>Scanned Codes:</h2>
-        <table id="myTable" border="1">
-          <tr>
-            <th>Scanned Data</th>
-          </tr>
-        </table>   
-      </div>
+    </div>
+    <div class="scanned-container" id="scannedTable">
+      <h2>Scanned Codes:</h2>
+      <table id="myTable" border="1">
+        <tr>
+          <th>QR ID</th>
+          <th>Part Number</th>
+          <th>Serial Number</th>
+          <th>Name</th>
+        </tr>
+      </table>
     </div>
   </body>
 </html>
-
-
-</body>
-</html>
-
-<!--  -->
-<!-- HTML5-qrcode library methods: -->
-<!--  -->
-<!-- Html5QrcodeScanner: Initializes the QR code scanner. -->
-<!-- render(): Renders the scanner within a specified HTML element. -->
-<!-- onScanSuccess(decodeText, decodeResult): A callback function triggered upon successful QR code scanning, displaying decoded text in an alert. -->
-<!-- fps: Sets the frames per second for video capture. -->
-<!-- qrbos: Sets the QR code detection boundary size. -->
-<!--  -->
