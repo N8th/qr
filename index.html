@@ -4,17 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="script.js"></script>
     <title>Testing QR Scanner</title>
   </head>
   <body>
+    <div class="hero">
+      <a href="https://setnaio.com/">
+        <img
+          src="./images/SetnaIO_Animation.gif"
+          alt="Setna IO Animation"
+          id="plane_animation"
+        />
+      </a>
+      <a href="./welcome.html">
+        <img src="./images/skunk_logo.png" alt="Skunk Logo" id="skunk_image" />
+      </a>
+    </div>
+    <br />
     <div class="container">
       <h1>QR data</h1>
       <div class="section">
         <div id="my-qr-reader"></div>
       </div>
-      <div class="scanned-container" id="scannedCodes"></div>
+      <div class="scanned-container" id="scannedTable">
+        <h2>Scanned Codes:</h2>
+        <table id="myTable" border="1">
+          <tr>
+            <th>Scanned Data</th>
+          </tr>
+        </table>   
+      </div>
     </div>
-    <script src="https://unpkg.com/html5-qrcode"></script>
-    <script src="script.js"></script>
   </body>
 </html>
+
+
+</body>
+</html>
+
+<!--  -->
+<!-- HTML5-qrcode library methods: -->
+<!--  -->
+<!-- Html5QrcodeScanner: Initializes the QR code scanner. -->
+<!-- render(): Renders the scanner within a specified HTML element. -->
+<!-- onScanSuccess(decodeText, decodeResult): A callback function triggered upon successful QR code scanning, displaying decoded text in an alert. -->
+<!-- fps: Sets the frames per second for video capture. -->
+<!-- qrbos: Sets the QR code detection boundary size. -->
+<!--  -->

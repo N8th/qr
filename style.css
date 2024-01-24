@@ -1,8 +1,34 @@
-/* style.css file*/
-body {
+:root {
+  --setna_darkest_purple: #060024;
+  --setna_dark_purple: #1e1a34;
+  --setna_light_purple: #5233ff;
+  --banner_white: #ffffff;
+  --banner_height_mobile: 5vh;
+  --banner_height_web: 5vh;
+  --setna_form_background: #30285a;
+}
+/* hero */
+/* hero */
+/* hero */
+.hero {
+  width: 200vw;
   display: flex;
-  justify-content: center;
+}
+.hero,
+.logos,
+#plane_animation,
+#skunk_image {
+  background: var(--banner_white);
+  height: var(--banner_height_web);
+}
+
+/* hero */
+/* hero */
+/* hero */
+
+body {
   margin: 0;
+  width: 100vw;
   padding: 0;
   height: 100vh;
   box-sizing: border-box;
@@ -10,9 +36,9 @@ body {
   background: rgb(128 0 0 / 66%);
 }
 .container {
+  margin: 0 auto;
   width: 100%;
   max-width: 500px;
-  margin: 5px;
 }
 
 .container h1 {
