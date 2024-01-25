@@ -27,7 +27,8 @@
       <div class="section">
         <div id="my-qr-reader"></div>
         <br />
-        <input type="text" id="qrId" placeholder="QR ID" readonly />
+        <input type="text" id="qrId" placeholder="QR ID" />
+        <!-- maybe add readonly for qrId -->
         <input type="text" id="partNumber" placeholder="Part Number" />
         <input type="text" id="serialNumber" placeholder="Serial Number" />
         <input type="text" id="name" placeholder="Name" />
@@ -41,6 +42,10 @@
         <input type="date" id="warrantyExpiry" placeholder="Warranty Expiry" />
         <input type="text" id="notes" placeholder="Notes" />
         <button id="addButton">Add to Table</button>
+        <!-- remove this before pushing -->
+        <button class="debug" id="deleteAllButton">Delete All</button>
+        <button class="debug" id="addRandomButton">Add 1 Random</button>
+        <!-- remove this before pushing -->
       </div>
     </div>
     <div class="scanned-container" id="scannedTable">

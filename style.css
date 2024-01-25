@@ -124,3 +124,8 @@ scanned-container {
   transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
+
+.debug {
+  background-image: linear-gradient(#3cff00, rgb(255, 0, 0));
+  border: dashed 0.3rem red;
+}
